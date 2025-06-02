@@ -1,0 +1,37 @@
+#' artesianwells: Artesian Well Site Assessment Data
+#' 
+#' A dataset capturing geospatial, structural, usage, and management characteristics of artesian well sites
+#' 
+#' @format A tibble with 44 rows and 29 variables
+#' \describe{
+#'   \item{date_submitted}{Date when the survey or data entry was submitted}
+#'   \item{latitude}{Latitude coordinate of the surveyed site}
+#'   \item{longitude}{Longitude coordinate of the surveyed site}
+#'   \item{artesian_well}{Indicates whether the location of the artesian well}
+#'   \item{district}{Administrative district where the site is located}
+#'   \item{trad_auth}{Traditional authority under which the site falls}
+#'   \item{well_images}{Links or filenames of images showing the well}
+#'   \item{has_structure}{Indicates if the well has a surrounding structure}
+#'   \item{structure_type}{Type of structure present around the well}
+#'   \item{structure_type_other}{Description of structure if Other is selected}
+#'   \item{can_test_flow}{Indicates if a flow test can be conducted at the site}
+#'   \item{fill_time_20l}{Time in seconds required to fill a 20 liter container}
+#'   \item{community_use}{Primary community usage of the water source}
+#'   \item{other_site_use}{Additional uses of the site (if any)}
+#'   \item{seasonal_unavail}{Indicates if the site becomes unavailable during certain seasons}
+#'   \item{area_photos}{Links or filenames of photos showing the broader site area}
+#'   \item{abstraction_nearby}{Indicates if there are other water abstractions near the site}
+#'   \item{abstraction_count}{Number of nearby water abstractions}
+#'   \item{abs1_name}{Name or label of the nearest water abstraction}
+#'   \item{abs1_latitude}{Latitude of the nearest abstraction}
+#'   \item{abs1_longitude}{Longitude of the nearest abstraction}
+#'   \item{abs1_method}{Method used at the nearest abstraction}
+#'   \item{abs1_region}{Region or area where the nearest abstraction is located}
+#'   \item{recharge_known}{Indicates if groundwater recharge source is known}
+#'   \item{recharge_other}{Description of recharge source if Other is selected}
+#'   \item{river_nearby}{Indicates if a river is near the site}
+#'   \item{has_operator}{Indicates if the water point has a designated operator}
+#'   \item{mgmt_type}{Type of management in place for the water source}
+#'   \item{mgmt_type_other}{Type of management in place for the water source if Other is selected}
+#' }
+"artesianwells"
