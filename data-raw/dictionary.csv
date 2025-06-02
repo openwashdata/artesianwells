@@ -1,0 +1,30 @@
+directory,file_name,variable_name,variable_type,description
+data/,artesianwells.rda,date_submitted,character,Date when the survey or data entry was submitted
+data/,artesianwells.rda,latitude,numeric,Latitude coordinate of the surveyed site
+data/,artesianwells.rda,longitude,numeric,Longitude coordinate of the surveyed site
+data/,artesianwells.rda,artesian_well,character,Indicates whether the location of the artesian well
+data/,artesianwells.rda,district,character,Administrative district where the site is located
+data/,artesianwells.rda,trad_auth,character,Traditional authority under which the site falls
+data/,artesianwells.rda,well_images,character,Links or filenames of images showing the well
+data/,artesianwells.rda,has_structure,character,Indicates if the well has a surrounding structure
+data/,artesianwells.rda,structure_type,character,Type of structure present around the well
+data/,artesianwells.rda,structure_type_other,character,Description of structure if Other is selected
+data/,artesianwells.rda,can_test_flow,character,Indicates if a flow test can be conducted at the site
+data/,artesianwells.rda,fill_time_20l,numeric,Time in seconds required to fill a 20 liter container
+data/,artesianwells.rda,community_use,character,Primary community usage of the water source
+data/,artesianwells.rda,other_site_use,character,Additional uses of the site (if any)
+data/,artesianwells.rda,seasonal_unavail,character,Indicates if the site becomes unavailable during certain seasons
+data/,artesianwells.rda,area_photos,character,Links or filenames of photos showing the broader site area
+data/,artesianwells.rda,abstraction_nearby,character,Indicates if there are other water abstractions near the site
+data/,artesianwells.rda,abstraction_count,numeric,Number of nearby water abstractions
+data/,artesianwells.rda,abs1_name,character,Name or label of the nearest water abstraction
+data/,artesianwells.rda,abs1_latitude,numeric,Latitude of the nearest abstraction
+data/,artesianwells.rda,abs1_longitude,numeric,Longitude of the nearest abstraction
+data/,artesianwells.rda,abs1_method,character,Method used at the nearest abstraction
+data/,artesianwells.rda,abs1_region,character,Region or area where the nearest abstraction is located
+data/,artesianwells.rda,recharge_known,character,Indicates if groundwater recharge source is known
+data/,artesianwells.rda,recharge_other,character,Description of recharge source if Other is selected
+data/,artesianwells.rda,river_nearby,character,Indicates if a river is near the site
+data/,artesianwells.rda,has_operator,character,Indicates if the water point has a designated operator
+data/,artesianwells.rda,mgmt_type,character,Type of management in place for the water source
+data/,artesianwells.rda,mgmt_type_other,logical,Type of management in place for the water source if Other is selected
