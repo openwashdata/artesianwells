@@ -4,11 +4,15 @@ Version: 0.0.0.9000
 Authors@R: 
     person("Emmanuel", "Mhango", , "emmanuellmhango@gmail.com", role = c("aut", "cre"))
 Description: A dataset capturing geospatial, structural, usage, and management characteristics of artesian well sites.
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
+License: CC BY 4.0
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
 Depends: 
     R (>= 3.5)
 LazyData: true
+Language: en-GB
+Config/Needs/website: rmarkdown
+Date: 2025-06-02
+URL: https://github.com/openwashdata/artesianwells
+BugReports: https://github.com/openwashdata/artesianwells/issues
