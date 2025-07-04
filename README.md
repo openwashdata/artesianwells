@@ -7,6 +7,7 @@
 
 [![License: CC BY
 4.0](https://img.shields.io/badge/License-CC_BY_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
+[![R-CMD-check](https://github.com/openwashdata/artesianwells/workflows/R-CMD-check/badge.svg)](https://github.com/openwashdata/artesianwells/actions)
 
 <!-- badges: end -->
 
@@ -111,7 +112,7 @@ artesianwells |>
   gt::as_raw_html()
 ```
 
-<div id="ojnnjnjvzz" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="iypvyonzrr" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
   &#10;  <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false" style="-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 16px; font-weight: normal; font-style: normal; background-color: #FFFFFF; width: auto; border-top-style: solid; border-top-width: 2px; border-top-color: #A8A8A8; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #A8A8A8; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3;" bgcolor="#FFFFFF">
   <thead style="border-style: none;">
     <tr class="gt_col_headings" style="border-style: none; border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3;">
@@ -369,7 +370,7 @@ Administrative district where the site is located
 
 <td style="text-align:left;">
 
-trad_auth
+traditional_authority
 </td>
 
 <td style="text-align:left;">
@@ -426,7 +427,7 @@ Indicates if the well has a surrounding structure
 
 <td style="text-align:left;">
 
-structure_type
+well_structure_type
 </td>
 
 <td style="text-align:left;">
@@ -445,7 +446,7 @@ Type of structure present around the well
 
 <td style="text-align:left;">
 
-structure_type_other
+well_structure_type_other
 </td>
 
 <td style="text-align:left;">
@@ -483,7 +484,7 @@ Indicates if a flow test can be conducted at the site
 
 <td style="text-align:left;">
 
-fill_time_20l
+seconds_to_fill_20L
 </td>
 
 <td style="text-align:left;">
@@ -502,7 +503,7 @@ Time in seconds required to fill a 20 liter container
 
 <td style="text-align:left;">
 
-community_use
+use_of_site
 </td>
 
 <td style="text-align:left;">
@@ -870,13 +871,14 @@ Please cite this package using:
 
 ``` r
 citation("artesianwells")
-#> To cite package 'artesianwells' in publications use:
+#> Um Paket 'artesianwells' in Publikationen zu zitieren, nutzen Sie
+#> bitte:
 #> 
 #>   Mhango E (2025). _artesianwells: Artesian Well Site Assessment Data_.
 #>   R package version 0.0.0.9000,
 #>   <https://github.com/openwashdata/artesianwells>.
 #> 
-#> A BibTeX entry for LaTeX users is
+#> Ein BibTeX-Eintrag für LaTeX-Benutzer ist
 #> 
 #>   @Manual{,
 #>     title = {artesianwells: Artesian Well Site Assessment Data},
