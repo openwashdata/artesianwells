@@ -34,4 +34,17 @@
 #'   \item{mgmt_type}{Type of management in place for the water source}
 #'   \item{mgmt_type_other}{Type of management in place for the water source if Other is selected}
 #' }
+#' 
+#' @examples
+#' # Load the dataset
+#' data(artesianwells)
+#' 
+#' # View the first few rows
+#' head(artesianwells)
+#' 
+#' # Check dimensions
+#' dim(artesianwells)
+#' 
+#' # Summary of districts
+#' table(artesianwells$district)
 "artesianwells"

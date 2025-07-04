@@ -44,4 +44,17 @@ artesianwells
 \description{
 A dataset capturing geospatial, structural, usage, and management characteristics of artesian well sites
 }
+\examples{
+# Load the dataset
+data(artesianwells)
+
+# View the first few rows
+head(artesianwells)
+
+# Check dimensions
+dim(artesianwells)
+
+# Summary of districts
+table(artesianwells$district)
+}
 \keyword{datasets}
