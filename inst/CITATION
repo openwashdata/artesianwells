@@ -1,0 +1,10 @@
+bibentry(
+  bibtype = "Misc",
+  title = "artesianwells: Artesian Well Site Assessment Data",
+  author = person("Emmanuel", "Mhango", email = "emmanuellmhango@gmail.com", role = c("aut", "cre")),
+  year = 2024,
+  url = "https://github.com/openwashdata/artesianwells",
+  abstract = "A dataset capturing geospatial, structural, usage, and management characteristics of artesian well sites.",
+  version = "0.0.0.9000",
+  type = "dataset"
+)
