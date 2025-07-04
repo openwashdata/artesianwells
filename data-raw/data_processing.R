@@ -2,7 +2,7 @@
 # R script to process uploaded raw data into a tidy, analysis-ready data frame
 # Load packages ----------------------------------------------------------------
 ## Run the following code in console if you don't have the packages
-## install.packages(c("usethis", "fs", "here", "readr", "readxl", "openxlsx"))
+## install.packages(c("usethis", "fs", "here", "readr", "readxl", "openxlsx", "dplyr"))
 library(usethis)
 library(fs)
 library(here)
@@ -10,12 +10,10 @@ library(readr)
 library(dplyr)
 library(readxl)
 library(openxlsx)
-library(lubridate)
-library(ggplot2)
-library(maps)
 
 # Load Data --------------------------------------------------------------------
-# Load the necessary data from a CSV file
+# Load the raw survey data for artesian wells mapping in Malawi
+# This CSV file contains field data collected from various artesian well sites
 data_in <- readr::read_csv("data-raw/mapping artesian wells.csv")
 
 # (Optional) Read and clean the codebook if needed (commented out for now)
@@ -23,7 +21,8 @@ data_in <- readr::read_csv("data-raw/mapping artesian wells.csv")
 #   clean_names()
 
 # Tidy data --------------------------------------------------------------------
-# Remove rows where the 'latitude' column contains NULL (NA) values
+# Remove incomplete records: filter out rows missing GPS coordinates
+# This ensures all mapped wells have valid location data
 data_in <- data_in %>%
   filter(!is.na(latitude))
 
@@ -51,8 +50,10 @@ check_utf8 <- function(df) {
   }
 }
 
-# Convert character columns from Latin1 encoding to UTF-8, removing problematic
-#   characters
+# Character encoding conversion ---------------------------------------------
+# Convert all character columns from Latin1 to UTF-8 encoding
+# This ensures compatibility and proper display of special characters
+# Any unconvertible characters are removed (sub = "")
 data_in[] <- lapply(data_in, function(x) {
   if (is.character(x)) {
     # Convert to UTF-8 and remove problematic characters
@@ -65,9 +66,16 @@ data_in[] <- lapply(data_in, function(x) {
 # Re-check the data for non-UTF-8 characters after the conversion
 check_utf8(data_in)
 
+# Create final dataset ---------------------------------------------------------
+# Assign the cleaned data to the package's main dataset name
 artesianwells <- data_in
 
 # Export Data ------------------------------------------------------------------
+# Save the processed data in multiple formats:
+# 1. As an R data object (.rda) in the data/ directory
+# 2. As a CSV file in inst/extdata/ for easy access
+# 3. As an Excel file in inst/extdata/ for non-R users
+# Final dataset contains 44 artesian wells across 29 variables
 usethis::use_data(artesianwells, overwrite = TRUE)
 fs::dir_create(here::here("inst", "extdata"))
 readr::write_csv(artesianwells,
