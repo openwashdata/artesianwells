@@ -1,6 +1,12 @@
 ---
 title: "Artesian Wells Image Gallery"
-author: "openwashdata"
+author:
+  - name: Lars Schöbitz
+    email: lschoebitz@ethz.ch
+    orcid: 0000-0003-2196-5015
+    affiliation:
+      - name: Global Health Engineering, ETH Zurich
+        url: https://ghe.ethz.ch
 date: "`r Sys.Date()`"
 format: 
   html:
