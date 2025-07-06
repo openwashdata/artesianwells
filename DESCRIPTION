@@ -3,7 +3,7 @@ Title: Artesian Well Site Assessment Data
 Version: 0.0.0.9000
 Authors@R: 
     person("Emmanuel", "Mhango", , "emmanuellmhango@gmail.com", role = c("aut", "cre"),
-           comment = c(ORCID = "0000-0000-0000-0000"))
+           comment = c(ORCID = "0000-0003-3197-6244"))
 Description: A dataset capturing geospatial, structural, usage, and management characteristics of artesian well sites.
 License: CC BY 4.0
 Encoding: UTF-8
