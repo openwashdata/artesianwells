@@ -4,6 +4,15 @@ template:
   includes:
     in_header: |
       <script defer data-domain="openwashdata.github.io" src="https://plausible.io/js/script.js"></script>
+      
+navbar:
+  structure:
+    left:  [intro, reference, articles]
+    right: [search, github]
+  components:
+    articles:
+      text: Gallery
+      href: articles/image-gallery.html
 
 home:
   links:
@@ -31,3 +40,9 @@ reference:
   desc: "Access the artesianwells dataset"
   contents:
   - artesianwells
+
+articles:
+- title: "Gallery"
+  navbar: ~
+  contents:
+  - articles/image-gallery
