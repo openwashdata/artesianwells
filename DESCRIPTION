@@ -19,6 +19,14 @@ Imports:
     dplyr,
     readxl,
     openxlsx
+Suggests:
+    gt,
+    gtExtras,
+    ggplot2,
+    tidyverse,
+    knitr,
+    rmarkdown,
+    scales
 Date: 2025-06-02
 URL: https://github.com/openwashdata/artesianwells
 BugReports: https://github.com/openwashdata/artesianwells/issues

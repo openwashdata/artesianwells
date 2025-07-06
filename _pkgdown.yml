@@ -31,3 +31,9 @@ reference:
   desc: "Access the artesianwells dataset"
   contents:
   - artesianwells
+
+articles:
+- title: "Gallery"
+  navbar: ~
+  contents:
+  - image-gallery
