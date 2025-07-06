@@ -59,6 +59,39 @@ This dataset is complemented by images captured at each site, accessible
 via permanent URLs, which provide photographic evidence of physical and
 infrastructural conditions.
 
+## At a Glance
+
+```{r district-summary, echo=FALSE, message=FALSE}
+library(artesianwells)
+library(dplyr)
+library(gt)
+artesianwells |>
+  group_by(district) |>
+  summarise(
+    well_count = n(),
+    avg_fill_time = round(mean(seconds_to_fill_20L, na.rm = TRUE), 1),
+    wells_with_images = sum(!is.na(well_images)),
+    .groups = "drop"
+  ) |>
+  arrange(desc(well_count)) |>
+  gt::gt() |>
+  gt::cols_label(
+    district = "District",
+    well_count = "Total Wells",
+    avg_fill_time = "Avg. Fill Time (s)",
+    wells_with_images = "Wells with Images"
+  ) |>
+  gt::tab_header(
+    title = "Artesian Wells by District",
+    subtitle = "Summary of 44 documented well sites"
+  ) |>
+  gt::fmt_number(
+    columns = avg_fill_time,
+    decimals = 1
+  ) |>
+  gt::as_raw_html()
+```
+
 **Potential Use Cases**
 
 Water Resource Planning and Management Government bodies and NGOs can
@@ -157,6 +190,19 @@ readr::read_csv("data-raw/dictionary.csv") |>
   kableExtra::kable_styling("striped") |> 
   kableExtra::scroll_box(height = "200px")
 ```
+
+## Use Cases
+
+### Visual Documentation and Analysis
+
+The package includes a comprehensive [**Image Gallery**](https://openwashdata.github.io/artesianwells/articles/image-gallery.html) vignette that showcases photographs from 43 artesian well sites. This visual documentation helps:
+
+- **Field verification**: Compare physical infrastructure with reported data
+- **Condition assessment**: Evaluate well structures and surrounding environments
+- **Training materials**: Use real-world examples for capacity building
+- **Stakeholder communication**: Present tangible evidence to decision-makers
+
+The gallery organizes wells by district and displays key metrics alongside images, making it easy to identify patterns and prioritize interventions.
 
 ## Example
 

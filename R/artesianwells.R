@@ -47,4 +47,9 @@
 #' 
 #' # Summary of districts
 #' table(artesianwells$district)
+#' 
+#' @importFrom dplyr %>%
+#' @importFrom readr read_csv
+#' @importFrom readxl read_excel
+#' @importFrom openxlsx write.xlsx
 "artesianwells"

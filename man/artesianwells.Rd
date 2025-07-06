@@ -56,5 +56,6 @@ dim(artesianwells)
 
 # Summary of districts
 table(artesianwells$district)
+
 }
 \keyword{datasets}

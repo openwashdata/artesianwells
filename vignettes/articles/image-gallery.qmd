@@ -1,0 +1,336 @@
+---
+title: "Artesian Wells Image Gallery"
+author:
+  - name: Lars Schöbitz
+    email: lschoebitz@ethz.ch
+    orcid: 0000-0003-2196-5015
+    affiliation:
+      - name: Global Health Engineering, ETH Zurich
+        url: https://ghe.ethz.ch
+date: "`r Sys.Date()`"
+format: 
+  html:
+    toc: true
+    toc-depth: 2
+    code-fold: true
+    code-summary: "Show code"
+execute:
+  message: false
+  warning: false
+---
+
+```{r setup}
+#| include: false
+library(artesianwells)
+library(tidyverse)
+library(gt)
+library(gtExtras)
+```
+
+## Introduction
+
+This vignette provides a visual showcase of the artesian wells documented in the dataset. The images are organized by district and displayed alongside key information about each well site.
+
+```{r data-prep}
+# Prepare data with image URLs
+wells_with_images <- artesianwells %>%
+  filter(!is.na(well_images)) %>%
+  mutate(
+    # Extract first image URL if multiple are separated by semicolons
+    first_well_image = str_extract(well_images, "^[^;]+"),
+    first_area_photo = if_else(!is.na(area_photos), 
+                               str_extract(area_photos, "^[^;]+"), 
+                               NA_character_)
+  ) %>%
+  select(
+    district,
+    traditional_authority,
+    latitude,
+    longitude,
+    has_structure,
+    well_structure_type,
+    seconds_to_fill_20L,
+    use_of_site,
+    river_nearby,
+    has_operator,
+    mgmt_type,
+    first_well_image,
+    first_area_photo
+  )
+
+# Count wells by district
+district_summary <- wells_with_images %>%
+  group_by(district) %>%
+  summarise(
+    well_count = n(),
+    avg_fill_time = round(mean(seconds_to_fill_20L, na.rm = TRUE), 1),
+    .groups = "drop"
+  ) %>%
+  arrange(desc(well_count))
+```
+
+## Overview
+
+The dataset contains images for **`r nrow(wells_with_images)`** artesian well sites across **`r n_distinct(wells_with_images$district)`** districts in Malawi.
+
+```{r overview-table}
+#| label: tbl-district-summary
+#| tbl-cap: "Summary of artesian wells by district"
+
+district_summary %>%
+  gt() %>%
+  cols_label(
+    district = "District",
+    well_count = "Number of Wells",
+    avg_fill_time = "Avg. Fill Time (seconds)"
+  ) %>%
+  tab_header(
+    title = "Artesian Wells Distribution",
+    subtitle = "Wells with documented images"
+  ) %>%
+  fmt_number(
+    columns = avg_fill_time,
+    decimals = 1
+  ) %>%
+  tab_style(
+    style = cell_fill(color = "lightblue"),
+    locations = cells_body(columns = well_count, rows = well_count > 5)
+  )
+```
+
+## Wells by District
+
+```{r district-galleries}
+#| output: asis
+#| echo: false
+
+# Function to create a district section
+create_district_section <- function(district_name, data) {
+  cat("\n\n### ", district_name, "\n\n")
+  
+  district_data <- data %>%
+    filter(district == district_name) %>%
+    arrange(traditional_authority)
+  
+  # Create the table with images
+  table_html <- district_data %>%
+    mutate(
+      location = paste0(round(latitude, 4), ", ", round(longitude, 4)),
+      fill_rate = case_when(
+        is.na(seconds_to_fill_20L) ~ "Not tested",
+        seconds_to_fill_20L < 30 ~ "Fast (< 30s)",
+        seconds_to_fill_20L < 60 ~ "Moderate (30-60s)",
+        TRUE ~ "Slow (> 60s)"
+      )
+    ) %>%
+    select(
+      first_well_image,
+      traditional_authority,
+      location,
+      has_structure,
+      fill_rate,
+      use_of_site,
+      has_operator
+    ) %>%
+    gt() %>%
+    cols_label(
+      first_well_image = "Well Image",
+      traditional_authority = "Traditional Authority",
+      location = "Coordinates",
+      has_structure = "Structure",
+      fill_rate = "Fill Rate",
+      use_of_site = "Primary Use",
+      has_operator = "Operator"
+    ) %>%
+    tab_header(
+      title = paste0("Artesian Wells in ", district_name),
+      subtitle = paste0(nrow(district_data), " well sites documented")
+    ) %>%
+    fmt_image(
+      columns = first_well_image,
+      height = 150,
+      width = 150
+    ) %>%
+    cols_width(
+      first_well_image ~ px(160),
+      traditional_authority ~ px(150),
+      location ~ px(120),
+      has_structure ~ px(80),
+      fill_rate ~ px(100),
+      use_of_site ~ px(100),
+      has_operator ~ px(80)
+    ) %>%
+    tab_style(
+      style = list(
+        cell_text(weight = "bold")
+      ),
+      locations = cells_column_labels()
+    ) %>%
+    tab_style(
+      style = cell_fill(color = "lightgreen"),
+      locations = cells_body(
+        columns = fill_rate,
+        rows = fill_rate == "Fast (< 30s)"
+      )
+    ) %>%
+    tab_style(
+      style = cell_fill(color = "lightyellow"),
+      locations = cells_body(
+        columns = fill_rate,
+        rows = fill_rate == "Moderate (30-60s)"
+      )
+    ) %>%
+    tab_style(
+      style = cell_fill(color = "lightcoral"),
+      locations = cells_body(
+        columns = fill_rate,
+        rows = fill_rate == "Slow (> 60s)"
+      )
+    ) %>%
+    as_raw_html()
+  
+  cat(table_html)
+}
+
+# Create sections for each district
+for (dist in district_summary$district) {
+  create_district_section(dist, wells_with_images)
+}
+```
+
+## Image Grid View
+
+For a quick visual overview, here's a grid displaying all well images organized in rows of 4:
+
+```{css}
+#| echo: false
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.image-item {
+  text-align: center;
+}
+
+.image-item img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.image-caption {
+  font-size: 0.8em;
+  margin-top: 5px;
+  color: #666;
+}
+
+@media (max-width: 768px) {
+  .image-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .image-grid {
+    grid-template-columns: 1fr;
+  }
+}
+```
+
+::: {.image-grid}
+```{r}
+#| output: asis
+#| echo: false
+
+# Create image grid
+wells_with_images %>%
+  mutate(
+    caption = paste0(district, " - ", traditional_authority)
+  ) %>%
+  select(first_well_image, caption) %>%
+  slice_head(n = 40) %>%  # Show first 40 images
+  pwalk(function(first_well_image, caption) {
+    cat(paste0(
+      '<div class="image-item">',
+      '<img src="', first_well_image, '" alt="', caption, '">',
+      '<div class="image-caption">', caption, '</div>',
+      '</div>\n'
+    ))
+  })
+```
+:::
+
+## Usage Patterns
+
+```{r usage-analysis}
+#| label: fig-usage-distribution
+#| fig-cap: "Distribution of artesian wells by primary use"
+
+wells_with_images %>%
+  count(use_of_site) %>%
+  mutate(use_of_site = fct_reorder(use_of_site, n)) %>%
+  ggplot(aes(x = n, y = use_of_site, fill = use_of_site)) +
+  geom_col() +
+  geom_text(aes(label = n), hjust = -0.2) +
+  scale_x_continuous(expand = expansion(mult = c(0, 0.1))) +
+  labs(
+    x = "Number of Wells",
+    y = "Primary Use",
+    title = "Primary Usage of Artesian Wells"
+  ) +
+  theme_minimal() +
+  theme(legend.position = "none")
+```
+
+## Flow Rate Analysis
+
+```{r flow-analysis}
+#| label: tbl-flow-stats
+#| tbl-cap: "Flow rate statistics by district"
+
+wells_with_images %>%
+  filter(!is.na(seconds_to_fill_20L)) %>%
+  group_by(district) %>%
+  summarise(
+    n_tested = n(),
+    min_time = min(seconds_to_fill_20L, na.rm = TRUE),
+    avg_time = mean(seconds_to_fill_20L, na.rm = TRUE),
+    max_time = max(seconds_to_fill_20L, na.rm = TRUE),
+    .groups = "drop"
+  ) %>%
+  gt() %>%
+  cols_label(
+    district = "District",
+    n_tested = "Wells Tested",
+    min_time = "Min (s)",
+    avg_time = "Average (s)",
+    max_time = "Max (s)"
+  ) %>%
+  fmt_number(
+    columns = c(min_time, avg_time, max_time),
+    decimals = 1
+  ) %>%
+  tab_header(
+    title = "Flow Rate Statistics",
+    subtitle = "Time to fill 20-liter container"
+  ) %>%
+  data_color(
+    columns = avg_time,
+    colors = scales::col_numeric(
+      palette = c("green", "yellow", "red"),
+      domain = NULL
+    )
+  )
+```
+
+## Data Notes
+
+- Images are hosted on the mwater API and may require internet connection to display
+- Some wells have multiple images; only the first image is displayed in this gallery
+- Flow rate data is not available for all wells
+- The dataset was collected in April 2024
