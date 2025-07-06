@@ -4,14 +4,14 @@ data/,artesianwells.rda,latitude,numeric,Latitude coordinate of the surveyed sit
 data/,artesianwells.rda,longitude,numeric,Longitude coordinate of the surveyed site
 data/,artesianwells.rda,artesian_well,character,Indicates whether the location of the artesian well
 data/,artesianwells.rda,district,character,Administrative district where the site is located
-data/,artesianwells.rda,trad_auth,character,Traditional authority under which the site falls
+data/,artesianwells.rda,traditional_authority,character,Traditional authority under which the site falls
 data/,artesianwells.rda,well_images,character,Links or filenames of images showing the well
 data/,artesianwells.rda,has_structure,character,Indicates if the well has a surrounding structure
-data/,artesianwells.rda,structure_type,character,Type of structure present around the well
-data/,artesianwells.rda,structure_type_other,character,Description of structure if Other is selected
+data/,artesianwells.rda,well_structure_type,character,Type of structure present around the well
+data/,artesianwells.rda,well_structure_type_other,character,Description of structure if Other is selected
 data/,artesianwells.rda,can_test_flow,character,Indicates if a flow test can be conducted at the site
-data/,artesianwells.rda,fill_time_20l,numeric,Time in seconds required to fill a 20 liter container
-data/,artesianwells.rda,community_use,character,Primary community usage of the water source
+data/,artesianwells.rda,seconds_to_fill_20L,numeric,Time in seconds required to fill a 20 liter container
+data/,artesianwells.rda,use_of_site,character,Primary community usage of the water source
 data/,artesianwells.rda,other_site_use,character,Additional uses of the site (if any)
 data/,artesianwells.rda,seasonal_unavail,character,Indicates if the site becomes unavailable during certain seasons
 data/,artesianwells.rda,area_photos,character,Links or filenames of photos showing the broader site area

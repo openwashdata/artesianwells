@@ -12,14 +12,14 @@ A tibble with 44 rows and 29 variables
 \item{longitude}{Longitude coordinate of the surveyed site}
 \item{artesian_well}{Indicates whether the location of the artesian well}
 \item{district}{Administrative district where the site is located}
-\item{trad_auth}{Traditional authority under which the site falls}
+\item{traditional_authority}{Traditional authority under which the site falls}
 \item{well_images}{Links or filenames of images showing the well}
 \item{has_structure}{Indicates if the well has a surrounding structure}
-\item{structure_type}{Type of structure present around the well}
-\item{structure_type_other}{Description of structure if Other is selected}
+\item{well_structure_type}{Type of structure present around the well}
+\item{well_structure_type_other}{Description of structure if Other is selected}
 \item{can_test_flow}{Indicates if a flow test can be conducted at the site}
-\item{fill_time_20l}{Time in seconds required to fill a 20 liter container}
-\item{community_use}{Primary community usage of the water source}
+\item{seconds_to_fill_20L}{Time in seconds required to fill a 20 liter container}
+\item{use_of_site}{Primary community usage of the water source}
 \item{other_site_use}{Additional uses of the site (if any)}
 \item{seasonal_unavail}{Indicates if the site becomes unavailable during certain seasons}
 \item{area_photos}{Links or filenames of photos showing the broader site area}
@@ -43,5 +43,18 @@ artesianwells
 }
 \description{
 A dataset capturing geospatial, structural, usage, and management characteristics of artesian well sites
+}
+\examples{
+# Load the dataset
+data(artesianwells)
+
+# View the first few rows
+head(artesianwells)
+
+# Check dimensions
+dim(artesianwells)
+
+# Summary of districts
+table(artesianwells$district)
 }
 \keyword{datasets}
