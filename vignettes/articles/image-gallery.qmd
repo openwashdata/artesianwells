@@ -248,7 +248,7 @@ wells_with_images %>%
   ) %>%
   select(first_well_image, caption) %>%
   slice_head(n = 40) %>%  # Show first 40 images
-  pmap(function(first_well_image, caption) {
+  pwalk(function(first_well_image, caption) {
     cat(paste0(
       '<div class="image-item">',
       '<img src="', first_well_image, '" alt="', caption, '">',
@@ -328,9 +328,3 @@ wells_with_images %>%
 - Some wells have multiple images; only the first image is displayed in this gallery
 - Flow rate data is not available for all wells
 - The dataset was collected in April 2024
-
-## Session Info
-
-```{r session-info}
-sessionInfo()
-```
