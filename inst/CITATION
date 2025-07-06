@@ -5,6 +5,6 @@ bibentry(
   year = 2025,
   url = "https://github.com/openwashdata/artesianwells",
   abstract = "A dataset capturing geospatial, structural, usage, and management characteristics of artesian well sites.",
-  version = "0.0.0.9000",
+  version = "0.1.0",
   type = "dataset"
 )
