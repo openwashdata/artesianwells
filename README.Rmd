@@ -92,6 +92,8 @@ artesianwells |>
   gt::as_raw_html()
 ```
 
+📸 **[View the Image Gallery](https://openwashdata.github.io/artesianwells/articles/image-gallery.html)** - Explore photographs from all 43 documented well sites with interactive tables and visualizations.
+
 **Potential Use Cases**
 
 Water Resource Planning and Management Government bodies and NGOs can
