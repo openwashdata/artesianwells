@@ -1,0 +1,21 @@
+cff-version: 1.2.0
+message: "If you use this dataset, please cite it as below."
+authors:
+  - family-names: Mhango
+    given-names: Emmanuel
+    email: emmanuellmhango@gmail.com
+    orcid: https://orcid.org/0000-0003-3197-6244
+title: "artesianwells: Artesian Well Site Assessment Data"
+version: 0.0.0.9000
+date-released: 2025-06-02
+url: https://github.com/openwashdata/artesianwells
+repository-code: https://github.com/openwashdata/artesianwells
+license: CC-BY-4.0
+type: dataset
+keywords:
+  - artesian wells
+  - water resources
+  - Malawi
+  - water management
+  - geospatial data
+abstract: "A dataset capturing geospatial, structural, usage, and management characteristics of artesian well sites."
