@@ -3,3 +3,4 @@
 *_files/
 articles/*.html
 articles/*_files/
+/.quarto/
