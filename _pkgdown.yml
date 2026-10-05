@@ -1,4 +1,4 @@
-url: https://github.com/openwashdata/artesianwells
+url: https://openwashdata.github.io/artesianwells/
 template:
   bootstrap: 5
   includes:
