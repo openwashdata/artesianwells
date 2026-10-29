@@ -1,0 +1,257 @@
+# Artesian Well Site Assessment Data
+
+**Description**
+
+This dataset provides detailed information on artesian well sites
+located in Zomba, Blantyre, Mangochi, Thyolo, Lilongwe, Dowa, Balaka,
+Mwanza, Neno and Chiradzulo, collected in April 2024. Each record
+represents a unique well site and includes attributes related to
+location (latitude and longitude), water source characteristics,
+infrastructure details, site usage, environmental context, and
+management structures.
+
+Key variables
+
+- Geolocation: Coordinates to map and analyze spatial distribution.
+- Water source information: Whether the well is artesian, presence of
+  structures, ability to test flow, and the time (in seconds) to fill a
+  20-liter container.
+- Usage patterns: Main and additional uses of the site (e.g., domestic,
+  irrigation, fish farming).
+- Nearby water abstractions: Proximity and attributes of neighboring
+  abstraction points.
+- Environmental data: Seasonal availability and nearby river presence.
+
+This dataset is complemented by images captured at each site, accessible
+via permanent URLs, which provide photographic evidence of physical and
+infrastructural conditions.
+
+## At a Glance
+
+| Artesian Wells by District |  |  |  |
+|:---|---:|---:|---:|
+| Summary of 44 documented well sites |  |  |  |
+| District | Total Wells | Avg. Fill Time (s) | Wells with Images |
+| Machinga | 10 | 62.9 | 10 |
+| Mangochi | 8 | 58.2 | 8 |
+| Blantyre | 5 | 104.9 | 5 |
+| Chikwawa | 4 | 17.8 | 4 |
+| Ntchisi | 4 | 38.8 | 4 |
+| Karonga | 3 | 37.2 | 3 |
+| Neno | 3 | 0.0 | 3 |
+| Salima | 3 | 18.6 | 3 |
+| Balaka | 2 | 153.7 | 2 |
+| Liwonde | 1 | 0.0 | 1 |
+| Mwanza | 1 | 0.0 | 0 |
+
+📸 **[View the Image
+Gallery](https://openwashdata.github.io/artesianwells/articles/image-gallery.html)** -
+Explore photographs from all 43 documented well sites with interactive
+tables and visualizations.
+
+**Potential Use Cases**
+
+Water Resource Planning and Management Government bodies and NGOs can
+use this dataset to assess water point availability, accessibility, and
+infrastructure needs.
+
+1.  Hydrological and Environmental Studies Researchers and environmental
+    scientists can analyze recharge patterns, abstraction pressures, and
+    seasonal availability for groundwater sustainability assessments.
+2.  Infrastructure Development and Maintenance Engineers and local
+    authorities can use structure type and condition data to prioritize
+    maintenance and investments in water infrastructure.
+3.  Community Health and Livelihood Planning The dataset helps evaluate
+    the adequacy of water sources for domestic and agricultural use,
+    which is critical for public health and economic planning.
+4.  Geospatial and GIS Mapping Projects The detailed coordinates and
+    associated metadata support mapping efforts to visualize and analyze
+    spatial patterns in water accessibility and site clustering.
+5.  Monitoring and Evaluation (M&E) Organizations implementing rural
+    water programs can track improvements, assess usage efficiency, and
+    monitor infrastructure over time.
+
+## Installation
+
+You can install the development version of artesianwells from
+[GitHub](https://github.com/) with:
+
+``` r
+
+# install.packages("devtools")
+devtools::install_github("openwashdata/artesianwells")
+```
+
+``` r
+
+## Run the following code in console if you don't have the packages
+## install.packages(c("dplyr", "knitr", "readr", "stringr", "gt", "kableExtra"))
+library(dplyr)
+library(knitr)
+library(readr)
+library(stringr)
+library(gt)
+library(kableExtra)
+```
+
+Alternatively, you can download the individual datasets as a CSV or XLSX
+file from the table below.
+
+1.  Click Download CSV. A window opens that displays the CSV in your
+    browser.
+2.  Right-click anywhere inside the window and select “Save Page As…”.
+3.  Save the file in a folder of your choice.
+
+| dataset | CSV | XLSX |
+|:---|:---|:---|
+| artesianwells | [Download CSV](https://github.com/openwashdata/artesianwells/raw/main/inst/extdata/artesianwells.csv) | [Download XLSX](https://github.com/openwashdata/artesianwells/raw/main/inst/extdata/artesianwells.xlsx) |
+
+## Data
+
+The package provides access to detailed information on artesian well
+sites
+
+``` r
+
+library(artesianwells)
+```
+
+### artesianwells
+
+The dataset `artesianwells` contains 44 observations and 29 variables
+
+``` r
+
+artesianwells |> 
+  head(3) |> 
+  gt::gt() |>
+  gt::as_raw_html()
+```
+
+| date_submitted | latitude | longitude | artesian_well | district | traditional_authority | well_images | has_structure | well_structure_type | well_structure_type_other | can_test_flow | seconds_to_fill_20L | use_of_site | other_site_use | seasonal_unavail | area_photos | abstraction_nearby | abstraction_count | abs1_name | abs1_latitude | abs1_longitude | abs1_method | abs1_region | recharge_known | recharge_other | river_nearby | has_operator | mgmt_type | mgmt_type_other |
+|---:|---:|---:|:---|:---|:---|:---|:---|:---|:---|:---|---:|:---|:---|:---|:---|:---|---:|:---|---:|---:|:---|:---|:---|:---|:---|:---|:---|:--:|
+| 4/3/2024 | -15.29841 | 35.00688 | Meleka 2 artesian well | Balaka | TA Nkaya | <https://api.mwater.co/v3/images/206a64b194bd4fd7bc64f816dbeae1a0>; <https://api.mwater.co/v3/images/588b41fcca2f492387c41c8fb3f165c6>; <https://api.mwater.co/v3/images/5788fe40e5d54be992f93075782e069e>; <https://api.mwater.co/v3/images/fa920e3ad83c4fc38a1753f7d9cdd7eb> | Yes | Hand Pump | NA | Yes | 243.323 | Domestic | Irrigation | No | <https://api.mwater.co/v3/images/29c1865953064a09905c2e8ccf2f5da4>; <https://api.mwater.co/v3/images/dc5d3e2e96cf4b61a3cc7d7cb3ce47aa> | Yes | 1 | Tabu potato Garden | -15.29832 | 35.00664 | GPS | TA Nkaya | NA | NA | NA | NA | NA | NA |
+| 4/3/2024 | -15.28861 | 35.01024 | Msunuzi Artesian well 1 | Balaka | TA Nkaya | <https://api.mwater.co/v3/images/92bd789c0a2c4a40a74e61438c949785>; <https://api.mwater.co/v3/images/35e637994fa54fc5a3aeddb654d9b6cc>; <https://api.mwater.co/v3/images/475eb784b8374452a4b1e2a231c3f155> | Yes | Hand Pump | NA | Yes | 64.120 | Domestic | Irrigation and fish farming | No | <https://api.mwater.co/v3/images/127fbf6f9b724970ac7ccc399de77f16>; <https://api.mwater.co/v3/images/fa914749de0649c3b8258ee1912405bb> | Yes | 5 | Mbuambua fish pond 1 | -15.28830 | 35.01035 | GPS | TA Nkaya | NA | NA | NA | NA | NA | NA |
+| 4/3/2024 | -15.37652 | 34.98523 | Mulangeni artesian well | Blantyre | TA Chigalu | <https://api.mwater.co/v3/images/3d7632482a30449a8df249f29bf77653>; <https://api.mwater.co/v3/images/c7d203530046468ab98c5385f8ecba06> | Yes | Other | A failed capping on a reticulated water system | Yes | 23.655 | Domestic | Irrigation | No | <https://api.mwater.co/v3/images/a0a672c6548841d08ab1baff4a0fbd02>; <https://api.mwater.co/v3/images/3103e3857c3248919b359fb94b510d1b> | Yes | 3 | Gogo Edward rice garden | -15.37607 | 34.98537 | GPS | TA Chigaru | NA | NA | NA | NA | NA | NA |
+
+For an overview of the variable names, see the following table.
+
+| variable_name | variable_type | description |
+|:---|:---|:---|
+| date_submitted | character | Date when the survey or data entry was submitted |
+| latitude | numeric | Latitude coordinate of the surveyed site |
+| longitude | numeric | Longitude coordinate of the surveyed site |
+| artesian_well | character | Indicates whether the location of the artesian well |
+| district | character | Administrative district where the site is located |
+| traditional_authority | character | Traditional authority under which the site falls |
+| well_images | character | Links or filenames of images showing the well |
+| has_structure | character | Indicates if the well has a surrounding structure |
+| well_structure_type | character | Type of structure present around the well |
+| well_structure_type_other | character | Description of structure if Other is selected |
+| can_test_flow | character | Indicates if a flow test can be conducted at the site |
+| seconds_to_fill_20L | numeric | Time in seconds required to fill a 20 liter container |
+| use_of_site | character | Primary community usage of the water source |
+| other_site_use | character | Additional uses of the site (if any) |
+| seasonal_unavail | character | Indicates if the site becomes unavailable during certain seasons |
+| area_photos | character | Links or filenames of photos showing the broader site area |
+| abstraction_nearby | character | Indicates if there are other water abstractions near the site |
+| abstraction_count | numeric | Number of nearby water abstractions |
+| abs1_name | character | Name or label of the nearest water abstraction |
+| abs1_latitude | numeric | Latitude of the nearest abstraction |
+| abs1_longitude | numeric | Longitude of the nearest abstraction |
+| abs1_method | character | Method used at the nearest abstraction |
+| abs1_region | character | Region or area where the nearest abstraction is located |
+| recharge_known | character | Indicates if groundwater recharge source is known |
+| recharge_other | character | Description of recharge source if Other is selected |
+| river_nearby | character | Indicates if a river is near the site |
+| has_operator | character | Indicates if the water point has a designated operator |
+| mgmt_type | character | Type of management in place for the water source |
+| mgmt_type_other | logical | Type of management in place for the water source if Other is selected |
+
+## Use Cases
+
+### Visual Documentation and Analysis
+
+The package includes a comprehensive [**Image
+Gallery**](https://openwashdata.github.io/artesianwells/articles/image-gallery.html)
+vignette that showcases photographs from 43 artesian well sites. This
+visual documentation helps:
+
+- **Field verification**: Compare physical infrastructure with reported
+  data
+- **Condition assessment**: Evaluate well structures and surrounding
+  environments
+- **Training materials**: Use real-world examples for capacity building
+- **Stakeholder communication**: Present tangible evidence to
+  decision-makers
+
+The gallery organizes wells by district and displays key metrics
+alongside images, making it easy to identify patterns and prioritize
+interventions.
+
+## Example
+
+``` r
+
+library(artesianwells)
+library(dplyr)
+library(ggplot2)
+library(maps)
+# Filter usable water point locations
+water_map_data <- artesianwells %>%
+  filter(!is.na(latitude) & !is.na(longitude))  # Ensure geo-points are valid
+
+# Get Malawi map outline
+malawi_map <- map_data("world", region = "Malawi")
+
+# Plot the water point locations
+ggplot() +
+  geom_polygon(data = malawi_map, aes(x = long, y = lat, group = group),
+               fill = "gray90", color = "gray70") +
+  geom_point(data = water_map_data,
+             aes(x = longitude, y = latitude, color = use_of_site),
+             size = 2, alpha = 0.7) +
+  coord_fixed(1.3) +
+  labs(
+    title = "Artesian Wells in Malawi",
+    x = "Longitude", y = "Latitude", color = "Use of Water Site"
+  ) +
+  theme_minimal(base_size = 13) +
+  theme(legend.position = "bottom")
+```
+
+![](reference/figures/README-unnamed-chunk-7-1.png)
+
+## License
+
+Data are available as
+[CC-BY](https://github.com/openwashdata/artesianwells/blob/main/LICENSE.md).
+
+## Citation
+
+Please cite this package using:
+
+``` r
+
+citation("artesianwells")
+#> Um Paket 'artesianwells' in Publikationen zu zitieren, nutzen Sie
+#> bitte:
+#> 
+#>   Mhango E (2025). "artesianwells: Artesian Well Site Assessment Data."
+#>   doi:10.5281/zenodo.15824828
+#>   <https://doi.org/10.5281/zenodo.15824828>,
+#>   <https://github.com/openwashdata/artesianwells>.
+#> 
+#> Ein BibTeX-Eintrag für LaTeX-Benutzer ist
+#> 
+#>   @Misc{,
+#>     title = {artesianwells: Artesian Well Site Assessment Data},
+#>     author = {Emmanuel Mhango},
+#>     year = {2025},
+#>     url = {https://github.com/openwashdata/artesianwells},
+#>     abstract = {A dataset capturing geospatial, structural, usage, and management characteristics of artesian well sites.},
+#>     version = {0.1.0},
+#>     type = {dataset},
+#>     doi = {10.5281/zenodo.15824828},
+#>   }
+```
