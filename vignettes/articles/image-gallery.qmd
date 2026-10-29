@@ -73,7 +73,7 @@ district_summary <- wells_with_images %>%
 
 The dataset contains images for **`r nrow(wells_with_images)`** artesian well sites across **`r n_distinct(wells_with_images$district)`** districts in Malawi.
 
-```{r overview-table}
+```{r}
 #| label: tbl-district-summary
 #| tbl-cap: "Summary of artesian wells by district"
 
@@ -202,8 +202,7 @@ for (dist in district_summary$district) {
 
 For a quick visual overview, here's a grid displaying all well images organized in rows of 4:
 
-```{css}
-#| echo: false
+```{css, echo=FALSE}
 .image-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
