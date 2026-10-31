@@ -1,5 +1,7 @@
 # Artesian Well Site Assessment Data
 
+A data package published by [openwashdata](https://openwashdata.org).
+
 **Description**
 
 This dataset provides detailed information on artesian well sites
