@@ -11,3 +11,5 @@
 ^\.claude$
 ^vignettes/articles$
 ^pkgdown$
+^_brand\.yml$
+^logos$
