@@ -1,7 +1,5 @@
 # Artesian Well Site Assessment Data
 
-A data package published by [openwashdata](https://openwashdata.org).
-
 **Description**
 
 This dataset provides detailed information on artesian well sites
@@ -230,6 +228,8 @@ Data are available as
 [CC-BY](https://github.com/openwashdata/artesianwells/blob/main/LICENSE.md).
 
 ## Citation
+
+Published by openwashdata, <https://openwashdata.org>.
 
 Please cite this package using:
 
